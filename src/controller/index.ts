@@ -27,11 +27,15 @@ router.post('/', async (req: Request, res: Response) => {
   }
 })
 
-// Get a specific link
+// Redirect to a specific link based on ID
 router.get('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
-  const link = await Link.findById(id).exec()
-  res.redirect(link.url)
+  try {
+    const link = await Link.findById(id).exec()
+    link && res.redirect(link.url)
+  } catch (error) {
+    res.send('Invalid link')
+  }
 })
 
 export default router
