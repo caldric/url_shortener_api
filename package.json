@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "caldric <cvaldric@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon build/index.js",
+    "build": "tsc"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
