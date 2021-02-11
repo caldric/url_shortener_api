@@ -3,6 +3,7 @@ import Link from '../model'
 
 const router = express.Router()
 
+// Get all links
 router.get('/', async (_, res: Response) => {
   const links = await Link.find({}).catch((err) =>
     res.status(500).json({ error: err.message })
@@ -10,6 +11,7 @@ router.get('/', async (_, res: Response) => {
   res.status(200).json(links)
 })
 
+// Create a new link
 router.post('/', async (req: Request, res: Response) => {
   // Obtain URL
   const { url } = req.body
