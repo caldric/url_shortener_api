@@ -1,6 +1,10 @@
-import { model, Schema } from 'mongoose'
+import { Document, model, Model, Schema } from 'mongoose'
 
-const linkSchema = new Schema({
+interface LinkDocument extends Document {
+  url: string
+}
+
+const linkSchema: Schema<LinkDocument> = new Schema({
   url: { type: String, required: true },
 })
 
