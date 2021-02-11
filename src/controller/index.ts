@@ -38,4 +38,15 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 })
 
+// Delete all links
+router.delete('/', async (req: Request, res: Response) => {
+  try {
+    await Link.deleteMany().exec()
+    const updatedLinks = await Link.find().exec()
+    res.status(200).json(updatedLinks)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
 export default router
