@@ -23,4 +23,15 @@ router.post('/', async (req: Request, res: Response) => {
   return res.status(200).json(newUrl)
 })
 
+// Get a specific link
+router.get('/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+  try {
+    const link = await Link.findById(id).exec()
+    res.status(200).json(link)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
 export default router
