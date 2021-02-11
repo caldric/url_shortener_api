@@ -5,10 +5,12 @@ const router = express.Router()
 
 // Get all links
 router.get('/', async (_, res: Response) => {
-  const links = await Link.find({}).catch((err) =>
-    res.status(500).json({ error: err.message })
-  )
-  res.status(200).json(links)
+  try {
+    const links = await Link.find().exec()
+    res.status(200).json(links)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 })
 
 // Create a new link
@@ -17,10 +19,12 @@ router.post('/', async (req: Request, res: Response) => {
   const { url } = req.body
 
   // Create new URL in the database
-  const newUrl = await Link.create({ url }).catch((err) =>
-    res.status(500).json({ error: err.message })
-  )
-  return res.status(200).json(newUrl)
+  try {
+    const newUrl = await Link.create({ url })
+    res.status(200).json(newUrl)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 })
 
 // Get a specific link
