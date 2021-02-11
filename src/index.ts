@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import controller from './controller'
 
 // API config
 const app = express()
@@ -25,6 +26,9 @@ mongoose.connection.once('open', () => {
 
 // Middleware
 app.use(express.json())
+
+// Controllers
+app.use('/', controller)
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
