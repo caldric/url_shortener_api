@@ -1,4 +1,4 @@
-import { Document, model, Model, Schema } from 'mongoose'
+import { Document, model, Schema } from 'mongoose'
 
 interface LinkDocument extends Document {
   url: string
